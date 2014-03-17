@@ -3,8 +3,8 @@ description: "GW prototyping"
 
 author: "Sam Leon"
 
-url: "http://noelmas.github.io/gw"
-baseurl: ""
+url: "https://github.com/noelmas/GW/"
+baseurl: "/GW"
 
 markdown: rdiscount
 permalink: :year/:month/:title.html
