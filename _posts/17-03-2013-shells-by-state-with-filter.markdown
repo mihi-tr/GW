@@ -1,14 +1,13 @@
 ---
 layout: post
-title:  "Shells"
+title:  "Shells by state with filter"
 date:   2014-03-17 11:30:00
 ---
-
 <html>
   <head>
   <style>
-    #map-canvas { width:900px; height:500px; }
-    .layer-wizard-search-label { font-family: sans-serif; font-size: 8;};
+    #map-canvas { width:700px; height:500px; }
+    .layer-wizard-search-label { font-family: sans-serif };
   </style>
   <script type="text/javascript"
     src="http://maps.google.com/maps/api/js?sensor=false">
@@ -18,7 +17,7 @@ date:   2014-03-17 11:30:00
     var layer_0;
     function initialize() {
       map = new google.maps.Map(document.getElementById('map-canvas'), {
-        center: new google.maps.LatLng(44.29994671931074, -85.47779944999996),
+        center: new google.maps.LatLng(40, -100),
         zoom: 3
       });
       var style = [
@@ -26,7 +25,7 @@ date:   2014-03-17 11:30:00
           featureType: 'all',
           elementType: 'all',
           stylers: [
-            { saturation: -76 }
+            { saturation: -44 }
           ]
         }
       ];
@@ -38,24 +37,25 @@ date:   2014-03-17 11:30:00
       map.setMapTypeId('map-style');
       layer_0 = new google.maps.FusionTablesLayer({
         query: {
-          select: "'Registered Agent'",
-          from: "1DFAnYbfnDXzIYgKMDsBdX2otLEpO21kgB-na07b5"
+          select: "col2",
+          from: "19pkvbmxGLgkuTMG_3rSmnYulZaOb5JjmOGoJMClz",
+          where: " col1 in ('Nebraska', 'Delaware', 'Florida', 'New Jersey', 'Colorado', 'Illinois', 'Louisiana', 'Massachusetts', 'Oregon')"
         },
         map: map,
-        styleId: 2,
-        templateId: 2
+        styleId: 9,
+        templateId: 13
       });
     }
     function changeMap_0() {
-      var whereClause;
+      var whereClause = " col1 in ('Nebraska', 'Delaware', 'Florida', 'New Jersey', 'Colorado', 'Illinois', 'Louisiana', 'Massachusetts', 'Oregon')";
       var searchString = document.getElementById('search-string_0').value.replace(/'/g, "\\'");
       if (searchString != '--Select--') {
-        whereClause = "'Type of crime' = '" + searchString + "'";
+        whereClause += " AND 'Type of crime facilitated' CONTAINS IGNORING CASE '" + searchString + "'";
       }
       layer_0.setOptions({
         query: {
-          select: "'Registered Agent'",
-          from: "1DFAnYbfnDXzIYgKMDsBdX2otLEpO21kgB-na07b5",
+          select: "col2",
+          from: "19pkvbmxGLgkuTMG_3rSmnYulZaOb5JjmOGoJMClz",
           where: whereClause
         }
       });
@@ -65,18 +65,17 @@ date:   2014-03-17 11:30:00
   </head>
   <body>
     <div id="map-canvas"></div>
-    <div style="margin-top: 10px;">
+    <div style="margin-top: 10px; font-size: 10px; margin-bottom: 10px;">
       <label class="layer-wizard-search-label">
-        <span style='font-size:10'>Type of crime to display on map</span>
+        Filter by type of crime facilitated
         <select id="search-string_0" onchange="changeMap_0(this.value);">
           <option value="--Select--">--Select--</option>
-          <option value="Defrauding government to obtain contracts">Defrauding government to obtain contracts</option>
-          <option value="Medicare fraud">Medicare fraud</option>
-          <option value="Money laundering for illegal arms trade">Money laundering for illegal arms trade</option>
-          <option value="Money laundering for illegal drugs operation">Money laundering for illegal drugs operation</option>
-          <option value="Money laundering for smuggling">Money laundering for smuggling</option>
+          <option value="Drugs">Drugs</option>
+		  <option value="Money laundering">Money laundering</option>
+		  <option value="Illegal arms trading">Illegal arms trading</option>
         </select>
       </label> 
     </div>
+	<div id="Links"><a href= >View and download the full set of case studies here</a></div>
   </body>
 </html>
