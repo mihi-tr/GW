@@ -1,40 +1,33 @@
----
-layout: post
-title:  "Fusion Table Test"
-date:   2014-03-17 23:30:00
----
-
 <html>
-  <head>
-    <meta charset="UTF-8">
+<head>
+<meta charset="UTF-8">
     <title>Fusion Tables Layer Example: Basic JSONP Request</title>
     <style type="text/css">
-
+    #map-canvas {
+           height: 500px;
+           width: 600px;
+         }
       .company {
         font-weight: bold;
         margin: 10px 0px 0px 0px;
         padding: 0px;
       }
-
       .crime, .state {
         margin: 0px;
         padding: 0px;
       }
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+	  </style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
     </script>
-    <script type="text/javascript">
+	<script type="text/javascript">
       function initialize() {
-        var query = "SELECT 'Shell Company Name', 'Type of crime', 'State' FROM " +
-            '1DFAnYbfnDXzIYgKMDsBdX2otLEpO21kgB-na07b5';
+        var query = "SELECT 'Shell Company Name', 'Type of crime', 'State' FROM " + '1DFAnYbfnDXzIYgKMDsBdX2otLEpO21kgB-na07b5';
         var encodedQuery = encodeURIComponent(query);
-
         // Construct the URL
         var url = ['https://www.googleapis.com/fusiontables/v1/query'];
         url.push('?sql=' + encodedQuery);
-        url.push('&key=AIzaSyB4LBj2wVAP7391ptIShgpXw7vlgI30SWE');
-        // url.push('&callback=?');
-
+        url.push('&key=AIzaSyA7UgPibV993XJ03s_nj3118ARrHHShVSI');
+        url.push('&callback=?');
         // Send the JSONP request using jQuery
         $.ajax({
           url: url.join(''),
@@ -56,7 +49,6 @@ date:   2014-03-17 23:30:00
               var stateElement = document.createElement('p');
               stateElement.innerHTML = 'state ' + state;
               stateElement.className = 'state';
-
               dataElement.appendChild(companyElement);
               dataElement.appendChild(crimeElement);
               dataElement.appendChild(stateElement);
@@ -65,9 +57,9 @@ date:   2014-03-17 23:30:00
           }
         });
       }
-    </script>
-  </head>
+	  </script>
+	</head>
   <body onload="initialize()">
-    <div id="ft-data"></div>
+	  <div id="ft-data"></div>
   </body>
-</html>
+  </html>
