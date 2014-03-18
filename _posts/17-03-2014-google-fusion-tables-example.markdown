@@ -21,16 +21,17 @@
     </script>
 	<script type="text/javascript">
       function initialize() {
-        var query = "SELECT 'Shell Company Name', 'Type of crime', 'State' FROM " + '1DFAnYbfnDXzIYgKMDsBdX2otLEpO21kgB-na07b5';
+        var query = "SELECT 'Shell Company Name'', 'Type of crime', State FROM " + '1DFAnYbfnDXzIYgKMDsBdX2otLEpO21kgB-na07b5';
         var encodedQuery = encodeURIComponent(query);
         // Construct the URL
         var url = ['https://www.googleapis.com/fusiontables/v1/query'];
         url.push('?sql=' + encodedQuery);
         url.push('&key=AIzaSyA7UgPibV993XJ03s_nj3118ARrHHShVSI');
-        url.push('&callback=?');
+        url.push('&jsoncallback=?');
+		console.log(url);
         // Send the JSONP request using jQuery
         $.ajax({
-          url: url.join(''),
+          url: url.join(""),
           dataType: 'jsonp',
           success: function (data) {
             var rows = data['rows'];
